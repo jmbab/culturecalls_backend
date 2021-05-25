@@ -1,8 +1,10 @@
 package com.culturecalls.backend.controllers;
 
 
+import com.culturecalls.backend.models.Category;
 import com.culturecalls.backend.models.Location;
 import com.culturecalls.backend.models.Show;
+import com.culturecalls.backend.repositories.CategoryRepository;
 import com.culturecalls.backend.repositories.ShowRepository;
 import com.culturecalls.backend.repositories.LocationRepository;
 import org.springframework.http.HttpStatus;
@@ -19,11 +21,13 @@ public class RestController {
     // The following objects cannot be altered thanks to the keyword "final"
     private final ShowRepository showRepository;
     private final LocationRepository locationRepository;
+    private final CategoryRepository categoryRepository;
 
     // Constructor
-    public RestController(ShowRepository showRepository, LocationRepository locationRepository) {
+    public RestController(ShowRepository showRepository, LocationRepository locationRepository, CategoryRepository categoryRepository) {
         this.showRepository = showRepository;
         this.locationRepository = locationRepository;
+        this.categoryRepository = categoryRepository;
     }
 
     @GetMapping("/shows")
@@ -34,6 +38,11 @@ public class RestController {
     @GetMapping("/locations")
     public List<Location> findAllLocations(){
         return locationRepository.findAll();
+    }
+
+    @GetMapping("/categories")
+    public List<Category> findAllCategories(){
+        return categoryRepository.findAll();
     }
 
     @PostMapping(value = "/newlocation", consumes = "application/json")
@@ -67,6 +76,17 @@ public class RestController {
             return ResponseEntity.notFound().build();
         location.setIdLocation(id);
         locationRepository.save(location);
+        return ResponseEntity.noContent().build();
+    }
+
+    @PatchMapping("/categories/{id}")
+    @ResponseStatus(HttpStatus.CREATED)
+    public ResponseEntity<Object> putCategory(@RequestBody Category category, @PathVariable Long id){
+        Optional<Category> categoryOptional = categoryRepository.findById(id);
+        if (categoryOptional.isEmpty())
+            return ResponseEntity.notFound().build();
+        category.setIdCategory(id);
+        categoryRepository.save(category);
         return ResponseEntity.noContent().build();
     }
 }
