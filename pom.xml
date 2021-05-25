@@ -9,9 +9,9 @@
         <relativePath/> <!-- lookup parent from repository -->
     </parent>
     <groupId>com.culturecalls</groupId>
-    <artifactId>culturecalls_backend</artifactId>
+    <artifactId>culturecalls_backend2</artifactId>
     <version>0.0.1-SNAPSHOT</version>
-    <name>culturecalls_backend</name>
+    <name>culturecalls_backend2</name>
     <description>Demo project for Spring Boot</description>
     <properties>
         <java.version>11</java.version>
