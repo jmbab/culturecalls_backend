@@ -70,7 +70,7 @@ public class RestController {
 
     @PatchMapping("/locations/{id}")
     @ResponseStatus(HttpStatus.CREATED)
-    public ResponseEntity<Object> putLocation(@RequestBody Location location, @PathVariable Long id){
+    public ResponseEntity<Object> patchLocation(@RequestBody Location location, @PathVariable Long id){
         Optional<Location> locationOptional = locationRepository.findById(id);
         if (locationOptional.isEmpty())
             return ResponseEntity.notFound().build();
