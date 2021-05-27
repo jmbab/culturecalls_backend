@@ -15,7 +15,7 @@ import javax.persistence.EntityManagerFactory;
 
         public LocalEntityManagerFactoryBean entityManagerFactory(){
             LocalEntityManagerFactoryBean factoryBean = new LocalEntityManagerFactoryBean();
-            factoryBean.setPersistenceUnitName("adventuredb");
+            factoryBean.setPersistenceUnitName("culturecalls");
             return factoryBean;
         }
 
