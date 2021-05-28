@@ -6,7 +6,7 @@ import com.culturecalls.backend.models.Show;
 import com.culturecalls.backend.repositories.CategoryRepository;
 import com.culturecalls.backend.repositories.LocationRepository;
 import com.culturecalls.backend.repositories.ShowRepository;
-import com.culturecalls.backend.repositories.UserRepository;
+//import com.culturecalls.backend.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
