@@ -1,51 +1,48 @@
 package com.culturecalls.backend.models;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-// Entity = single object
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "eventcategories")
 
 public class Category {
 
-    // lines 12-17 declares idevents as primary key in database
     @Id
-    // GeneratedValue auto-increments id value
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Column creates a column in database, even if it doesn't exist in database
-    @Column (name = "ideventcategories")
-    private Long idCategory;
-    @Column (name = "eventcategories")
-    private String categoryName;
+    @Column (name = "cat_id")
+    private Long catId;
 
-    // Constructor
+    @Column (name = "cat_name")
+    private String catName;
 
+    @OneToMany
+    @JoinColumn(name = "cat_id")
+    @JsonIgnore
+    private Set<Event> events = new HashSet<>();
 
-    public Category(Long idCategory, String categoryName) {
-        this.idCategory = idCategory;
-        this.categoryName = categoryName;
-    }
-
-    // Empty Constructor
     public Category() {
     }
 
-    // Getters and Setters allow to manipulate the data
 
-
-    public Long getIdCategory() {
-        return idCategory;
+    public Long getCatId() {
+        return catId;
     }
 
-    public void setIdCategory(Long idCategory) {
-        this.idCategory = idCategory;
+    public void setCatId(Long idCategory) {
+        this.catId = idCategory;
     }
 
-    public String getCategoryName() {
-        return categoryName;
+    public String getCatName() {
+        return catName;
     }
 
-    public void setCategoryName(String categoryName) {
-        this.categoryName = categoryName;
+    public void setCatName(String categoryName) {
+        this.catName = categoryName;
     }
+
+
 }

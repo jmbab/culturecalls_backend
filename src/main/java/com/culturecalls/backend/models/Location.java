@@ -1,103 +1,85 @@
 package com.culturecalls.backend.models;
 
-import javax.persistence.*;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
-// Entity = single object
+import javax.persistence.*;
+import java.util.HashSet;
+import java.util.Set;
+
 @Entity
 @Table(name = "locations")
 
 public class Location {
 
-    // lines 12-17 declares idevents as primary key in database
     @Id
-    // GeneratedValue auto-increments id value
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    // Column creates a column in database, even if it doesn't exist in database
-    @Column (name = "idlocations")
-    private Long idLocation;
-    @Column (name = "locationname")
-    private String locationName;
-    @Column (name = "locationcategory")
-    private String locationCategory;
-    @Column (name = "city")
-    private String city;
-    @Column (name = "streetname")
-    private String streetName;
-    @Column (name = "streetnumber")
-    private int streetNumber;
-    @Column (name = "postalcode")
-    private int postalCode;
+    @Column (name = "loc_id")
+    private Long locId;
+    @Column (name = "loc_name")
+    private String locName;
+    @Column (name = "loc_city")
+    private String locCity;
+    @Column (name = "loc_street")
+    private String locStreet;
+    @Column (name = "loc_streetnumber")
+    private int locNumber;
+    @Column (name = "loc_zipcode")
+    private int locZipCode;
 
-    // Constructor
-    public Location(Long idLocation, String locationName, String locationCategory, String city, String streetName, int streetNumber, int postalCode) {
-        this.idLocation = idLocation;
-        this.locationName = locationName;
-        this.locationCategory = locationCategory;
-        this.city = city;
-        this.streetName = streetName;
-        this.streetNumber = streetNumber;
-        this.postalCode = postalCode;
-    }
+    @OneToMany
+    @JoinColumn(name = "loc_id")
+    @JsonIgnore
+    private Set<Event> events = new HashSet<>();
 
-    // Empty Constructor
+
     public Location() {
     }
 
-    // Getters and Setters allow to manipulate the data
-    public Long getIdLocation() {
-        return idLocation;
+    public Long getLocId() {
+        return locId;
     }
 
-    public void setIdLocation(Long idLocation) {
-        this.idLocation = idLocation;
+    public void setLocId(Long locId) {
+        this.locId = locId;
     }
 
-    public String getLocationName() {
-        return locationName;
+    public String getLocName() {
+        return locName;
     }
 
-    public void setLocationName(String locationName) {
-        this.locationName = locationName;
+    public void setLocName(String locName) {
+        this.locName = locName;
     }
 
-    public String getLocationCategory() {
-        return locationCategory;
+    public String getLocCity() {
+        return locCity;
     }
 
-    public void setLocationCategory(String locationCategory) {
-        this.locationCategory = locationCategory;
+    public void setLocCity(String locCity) {
+        this.locCity = locCity;
     }
 
-    public String getCity() {
-        return city;
+    public String getLocStreet() {
+        return locStreet;
     }
 
-    public void setCity(String city) {
-        this.city = city;
+    public void setLocStreet(String locStreet) {
+        this.locStreet = locStreet;
     }
 
-    public String getStreetName() {
-        return streetName;
+    public int getLocNumber() {
+        return locNumber;
     }
 
-    public void setStreetName(String streetName) {
-        this.streetName = streetName;
+    public void setLocNumber(int locNumber) {
+        this.locNumber = locNumber;
     }
 
-    public int getStreetNumber() {
-        return streetNumber;
+    public int getLocZipCode() {
+        return locZipCode;
     }
 
-    public void setStreetNumber(int streetNumber) {
-        this.streetNumber = streetNumber;
+    public void setLocZipCode(int locZipCode) {
+        this.locZipCode = locZipCode;
     }
-
-    public int getPostalCode() {
-        return postalCode;
-    }
-
-    public void setPostalCode(int postalCode) {
-        this.postalCode = postalCode;
-    }
-
 }
