@@ -7,7 +7,6 @@ import com.culturecalls.backend.models.Event;
 import com.culturecalls.backend.repositories.CategoryRepository;
 import com.culturecalls.backend.repositories.EventRepository;
 import com.culturecalls.backend.repositories.LocationRepository;
-import com.culturecalls.backend.repositories.UserRepository;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
@@ -22,8 +21,7 @@ public class RestController {
     private final CategoryRepository categoryRepository;
 
 
-
-    public RestController(EventRepository eventRepository, LocationRepository locationRepository, CategoryRepository categoryRepository, UserRepository userRepository) {
+    public RestController(EventRepository eventRepository, LocationRepository locationRepository, CategoryRepository categoryRepository) {
         this.eventRepository = eventRepository;
         this.locationRepository = locationRepository;
         this.categoryRepository = categoryRepository;
